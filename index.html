@@ -1,12 +1,12 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<meta http-equiv="content-type" content="application/xhtml+xml; charset=UTF-8" />
-<link href="./img/fav-logo.ico" rel="shortcut icon" type="image/x-icon" />
-<link href="./css/design.css" rel="stylesheet" type="text/css" />
-<link href="./css/index.css" rel="stylesheet" type="text/css" />
-<link href="./css/print.css" rel="stylesheet" type="text/css" media="print" />
-<title>Bioloģijas Komandu Olimpiāde</title>
+    <meta http-equiv="content-type" content="application/xhtml+xml; charset=UTF-8" />
+    <link href="./img/fav-logo.ico" rel="shortcut icon" type="image/x-icon" />
+    <link href="./css/design.css" rel="stylesheet" type="text/css" />
+    <link href="./css/index.css" rel="stylesheet" type="text/css" />
+    <link href="./css/print.css" rel="stylesheet" type="text/css" media="print" />
+    <title>Bioloģijas Komandu Olimpiāde</title>
 </head>
 <body>
 <div id="header">
@@ -16,7 +16,7 @@
     <div id="sub">
         <!-- Correct the links later! -->
         <span class="previous"><a href="https://ipho2023.jp/en/" target="_blank">2. BKO (2023)</a></span>
-        <span class="img"><a href="./."><img src="./img/logo.png" alt="BKO"/></a></span>
+        <span class="img"><a href="./."><img src="./img/logo.png" alt="BKO" height="22" width="22"/></a></span>
         <span class="next"><a href="https://www.ipho2024.ir/" target="_blank">3. BKO (2024)</a></span>
     </div>
     <div id="menu">
@@ -37,27 +37,29 @@
 	<div class="intro">
 		Bioloģijas Komandu Olimpiāde (BKO) ir bioloģijas konkurss vidusskolēniem un 9. klašu audzēkņiem.
         BKO organizatori galvenokārt ir Rīgas Valsts 1. ģimnāzijas absolventi; starp organizatoriem ir arī
-        Inženierzinātņu vidusskolas audzēkņi un Rēzeknes Valsts ģimnāzijas absolventi. Olimpiāde tiek organizēta
+        Inženierzinātņu vidusskolas audzēkne un Rēzeknes Valsts ģimnāzijas absolvents. Olimpiāde tiek organizēta
         katru gadu kopš 2022. gada Rīgas Valsts 1. ģimnāzijas telpās. Papildus teksts...
 	</div>
 	<br />
-	<!-- <div class="intro">
-		<a href="http://ipho-unofficial.org/">ipho-unofficial.org</a> is an online resource for the past and upcoming Physics Olympiads.
-        It is unofficial and non-profit, and does not hold any rights over its contents. The data is taken from various websites including <a href="http://ipho-new.org/" target="_blank">ipho-new.org</a>, which is the official website of IPhO.
-		The theme and design of the website is based on <a href="http://www.imo-official.org/" target="_blank" style="white-space: nowrap;">imo-official.org</a>.
-        <br>
-        <br>
-        <a href="http://ipho-unofficial.org/">ipho-unofficial.org</a> is an open source project. <a href="https://github.com/abeakkas/ipho-unofficial.org" target="_blank">View on Github</a>.
+	<div class="intro">
+        Mājaslapa balstīta uz Starptautiskās Fizikas Olimpiādes neoficiālo mājaslapu 
+        (<a href="http://ipho-unofficial.org/">ipho-unofficial.org</a>), kas atkal balstīta uz
+        Starptautiskās Matemātikas Olimpiādes mājaslapu.
+        
+        Šī mājaslapa ir atvērtā avota (angliski <em>open source</em>) projekts, kas nozīmē, ka kodu var brīvi izmantot, kā arī
+        iespējams piedalīties mājaslapas uzlabošanā (kontaktēties ar mājaslapas redaktoru); mājaslapas kods 
+        pieejams <a href="https://github.com/bkolatvija/bkolatvija.github.io" target="_blank">šeit</a>.
 	</div>
-	<br /> -->
+	<br />
 </div>
 <div id="footer">
-    <b>E-mail:</b>
-    <a href="biokomandas@gmail.com">biokomandas@gmail.com</a>
-    <a href="http://ipho-new.org/" target="_blank">BKO oficiālā mājaslapa</a>
+    <b>E-pasts:</b>
+    <a href="mailto:biokomandas@gmail.com">biokomandas@gmail.com</a>
+    (Oficiālais olimpiādes e-pasts)
     <a href="javascript:easteregg()" style="color: black;">&bull;</a>
-    <b>Webmaster:</b>
-    <a href="mailto:iphounofficial@gmail.com">iphounofficial@gmail.com</a>
+    <b>Mājaslapas redaktors:</b>
+    <a href="mailto:markuss.kenins@gmail.com">markuss.kenins@gmail.com</a>
+    (Markuss G. Ķēniņš)
 </div>
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -108,58 +110,112 @@
 </script>
 
 <script>
-// Homepage animation
 var canvas = document.getElementById("canvas");
 var ctx = canvas.getContext("2d");
-var bx = 230, by = 110, br = 20;
-var a = 250;
+var bx1 = 230, by1 = 90, br = 10; // Blue ball 1
+var bx2 = 230, by2 = 90; // Blue ball 2
+var helixAmplitude = 20; // Amplitude of the cosine wave
+var helixFrequency = 0.05; // Frequency of the cosine wave
+var helixOffset = Math.PI / 2; // Offset between the two helices
+var speed = 0.1; // Speed of the balls
+var angle = 0;
+
 function render() {
     requestAnimationFrame(render);
-    var ba = new Date().getTime() * 0.002;
-    bx = 200 + 70 * Math.sin(ba);
-    by = 150 + 70 * Math.cos(ba);
-    ctx.save();
-    ctx.beginPath();
-    ctx.rect(200 - a / 2 + a * .4, 150 - a / 2 + a * .18, a * .6, a * .6);
-    ctx.fillStyle = "#ff9090";
-    ctx.fill();
-    ctx.strokeStyle = "#ff0000";
-    ctx.stroke();
-    ctx.clip();
-    ctx.fillStyle = "#ff0000";
-    ctx.beginPath();
-    ctx.arc(bx, by, br, 0, 7);
-    ctx.fill();
-    ctx.restore();
-
-    ctx.save();
-    ctx.beginPath();
-    ctx.rect(200 - a / 2 + a * .18, 150 - a / 2 + a * .4, a * .6, a * .6);
-    ctx.fillStyle = "#9090ff";
-    ctx.fill();
-    ctx.strokeStyle = "#0000ff";
-    ctx.stroke();
-    ctx.clip();
-    ctx.fillStyle = "#0000ff";
-    ctx.beginPath();
-    ctx.arc(bx, by, br, 0, 7);
-    ctx.fill();
-    ctx.restore();
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
     
-    ctx.save();
+    // Draw helix 1
     ctx.beginPath();
-    ctx.rect(200 - a / 2, 150 - a / 2, a * .6, a * .6);
-    ctx.fillStyle="#ffff90";
-    ctx.fill();
-    ctx.strokeStyle="#ffff00";
+    ctx.strokeStyle = "#90e0f0"; // Light blue color for helix
+    for (var x = 0; x <= canvas.width; x += 5) {
+        var y1 = 150 + helixAmplitude * Math.cos(helixFrequency * x + angle);
+        ctx.lineTo(x, y1);
+    }
     ctx.stroke();
-    ctx.clip();
-    ctx.fillStyle="#ffff00";
+    
+    // Draw helix 2
     ctx.beginPath();
-    ctx.arc(bx, by, br, 0, 7);
+    ctx.strokeStyle = "#90e0f0"; // Light blue color for helix
+    for (var x = 0; x <= canvas.width; x += 5) {
+        var y2 = 150 + helixAmplitude * Math.cos(helixFrequency * x + helixOffset + angle);
+        ctx.lineTo(x, y2);
+    }
+    ctx.stroke();
+    
+    // Update positions of blue balls
+    bx1 += speed;
+    bx2 += speed;
+    if (bx1 > canvas.width) bx1 = 0;
+    if (bx2 > canvas.width) bx2 = 0;
+    
+    // Draw blue balls
+    ctx.beginPath();
+    ctx.fillStyle = "#0000ff"; // Blue color for balls
+    ctx.arc(bx1, 150 + helixAmplitude * Math.cos(helixFrequency * bx1 + angle), br, 0, Math.PI * 2);
+    ctx.arc(bx2, 150 + helixAmplitude * Math.cos(helixFrequency * bx2 + helixOffset + angle), br, 0, Math.PI * 2);
     ctx.fill();
-    ctx.restore();
+    
+    // Increment angle for animation
+    angle += 0.1;
 }
+
+render();
+</script>
+<script>
+var canvas = document.getElementById("canvas");
+var ctx = canvas.getContext("2d");
+var bx1 = 230, by1 = 110, br = 10; // Blue ball 1
+var bx2 = 230, by2 = 110; // Blue ball 2
+var helixRadius = 50; // Radius of the helix
+var helixWidth = 10; // Width of the helix
+var angle = 0;
+
+function render() {
+    requestAnimationFrame(render);
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    
+    // Draw helix 1
+    ctx.beginPath();
+    ctx.strokeStyle = "#90e0f0"; // Light blue color for helix
+    for (var i = 0; i < 360; i += 20) {
+        var x = 200 + helixRadius * Math.cos((i + angle) * Math.PI / 180);
+        var y = 150 + helixRadius * Math.sin((i + angle) * Math.PI / 180);
+        ctx.moveTo(x, y);
+        var x2 = 200 + (helixRadius + helixWidth) * Math.cos((i + angle) * Math.PI / 180);
+        var y2 = 150 + (helixRadius + helixWidth) * Math.sin((i + angle) * Math.PI / 180);
+        ctx.lineTo(x2, y2);
+    }
+    ctx.stroke();
+    
+    // Draw helix 2
+    ctx.beginPath();
+    for (var i = 0; i < 360; i += 20) {
+        var x = 200 + helixRadius * Math.cos((i + 180 + angle) * Math.PI / 180);
+        var y = 150 + helixRadius * Math.sin((i + 180 + angle) * Math.PI / 180);
+        ctx.moveTo(x, y);
+        var x2 = 200 + (helixRadius + helixWidth) * Math.cos((i + 180 + angle) * Math.PI / 180);
+        var y2 = 150 + (helixRadius + helixWidth) * Math.sin((i + 180 + angle) * Math.PI / 180);
+        ctx.lineTo(x2, y2);
+    }
+    ctx.stroke();
+    
+    // Update positions of blue balls
+    bx1 = 200 + helixRadius * Math.cos(angle * Math.PI / 180);
+    by1 = 150 + helixRadius * Math.sin(angle * Math.PI / 180);
+    bx2 = 200 + helixRadius * Math.cos((angle + 180) * Math.PI / 180);
+    by2 = 150 + helixRadius * Math.sin((angle + 180) * Math.PI / 180);
+    
+    // Draw blue balls
+    ctx.beginPath();
+    ctx.fillStyle = "#0000ff"; // Blue color for balls
+    ctx.arc(bx1, by1, br, 0, Math.PI * 2);
+    ctx.arc(bx2, by2, br, 0, Math.PI * 2);
+    ctx.fill();
+    
+    // Increment angle for animation
+    angle += 1;
+}
+
 render();
 </script>
 </body>
