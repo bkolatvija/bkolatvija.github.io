@@ -109,114 +109,235 @@
   }
 </script>
 
+
+
+
+
+
+
 <script>
 var canvas = document.getElementById("canvas");
 var ctx = canvas.getContext("2d");
-var bx1 = 230, by1 = 90, br = 10; // Blue ball 1
-var bx2 = 230, by2 = 90; // Blue ball 2
-var helixAmplitude = 20; // Amplitude of the cosine wave
-var helixFrequency = 0.05; // Frequency of the cosine wave
-var helixOffset = Math.PI / 2; // Offset between the two helices
-var speed = 0.1; // Speed of the balls
-var angle = 0;
+var amplitude = 20; // Amplitude of the cosine wave
+var circleRadius = 150; // Radius of the circular axis
+var n = 8; // Integer defining the number of cosine wave cycles
+var phaseOffset = Math.PI / 4; // Phase offset for the second circular cosine wave
+var ballRadius = 5; // Radius of the balls
+var ballSpeed = 0.01; // Speed of the balls
+
+// Initial positions of the balls
+var ball1Angle = 0;
+var ball2Angle = 0;
 
 function render() {
-    requestAnimationFrame(render);
+    // Clear the canvas
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     
-    // Draw helix 1
+    // Draw the circular axis
     ctx.beginPath();
-    ctx.strokeStyle = "#90e0f0"; // Light blue color for helix
-    for (var x = 0; x <= canvas.width; x += 5) {
-        var y1 = 150 + helixAmplitude * Math.cos(helixFrequency * x + angle);
-        ctx.lineTo(x, y1);
-    }
+    ctx.arc(canvas.width / 2, canvas.height / 2, circleRadius, 0, Math.PI * 2);
     ctx.stroke();
     
-    // Draw helix 2
+    // Draw the first circular cosine wave
+    drawCircularCosineWave("#90e0f0", 0);
+    
+    // Draw the second circular cosine wave with a phase offset
+    drawCircularCosineWave("#5080a0", phaseOffset);
+    
+    // Move and draw the balls
+    moveAndDrawBall("#00008b", ball1Angle, 0);
+    moveAndDrawBall("#000033", ball2Angle, phaseOffset);
+    
+    // Update ball angles for next frame
+    ball1Angle += ballSpeed;
+    ball2Angle += ballSpeed;
+    
+    // Request next frame
+    requestAnimationFrame(render);
+}
+
+function drawCircularCosineWave(color, offset) {
+    ctx.fillStyle = color; // Color for the circles
+    ctx.strokeStyle = color; // Color for the lines
     ctx.beginPath();
-    ctx.strokeStyle = "#90e0f0"; // Light blue color for helix
-    for (var x = 0; x <= canvas.width; x += 5) {
-        var y2 = 150 + helixAmplitude * Math.cos(helixFrequency * x + helixOffset + angle);
-        ctx.lineTo(x, y2);
+    for (var angle = 0; angle <= Math.PI * 2; angle += 0.01) {
+        var r = circleRadius + amplitude * Math.cos(angle * n + offset);
+        var x = canvas.width / 2 + r * Math.cos(angle);
+        var y = canvas.height / 2 + r * Math.sin(angle);
+        
+        // Draw a circle at each point along the circular cosine wave
+        ctx.beginPath();
+        ctx.arc(x, y, ballRadius, 0, Math.PI * 2); // Draw circles with 3 times the radius for thicker appearance
+        ctx.fill();
     }
-    ctx.stroke();
+}
+
+function moveAndDrawBall(color, angle, offset) {
+    var r = circleRadius + amplitude * Math.cos(angle * n + offset);
+    var x = canvas.width / 2 + r * Math.cos(angle);
+    var y = canvas.height / 2 + r * Math.sin(angle);
     
-    // Update positions of blue balls
-    bx1 += speed;
-    bx2 += speed;
-    if (bx1 > canvas.width) bx1 = 0;
-    if (bx2 > canvas.width) bx2 = 0;
-    
-    // Draw blue balls
+    // Draw the ball
+    ctx.fillStyle = color;
     ctx.beginPath();
-    ctx.fillStyle = "#0000ff"; // Blue color for balls
-    ctx.arc(bx1, 150 + helixAmplitude * Math.cos(helixFrequency * bx1 + angle), br, 0, Math.PI * 2);
-    ctx.arc(bx2, 150 + helixAmplitude * Math.cos(helixFrequency * bx2 + helixOffset + angle), br, 0, Math.PI * 2);
+    ctx.arc(x, y, ballRadius, 0, Math.PI * 2);
     ctx.fill();
-    
-    // Increment angle for animation
-    angle += 0.1;
 }
 
 render();
 </script>
-<script>
+
+
+
+
+
+
+
+
+
+<!-- <script>
 var canvas = document.getElementById("canvas");
 var ctx = canvas.getContext("2d");
-var bx1 = 230, by1 = 110, br = 10; // Blue ball 1
-var bx2 = 230, by2 = 110; // Blue ball 2
-var helixRadius = 50; // Radius of the helix
-var helixWidth = 10; // Width of the helix
-var angle = 0;
+var amplitude = 20; // Amplitude of the cosine wave
+var circleRadius = 150; // Radius of the circular axis
+var n = 8; // Integer defining the number of cosine wave cycles
+var phaseOffset = Math.PI / 4; // Phase offset for the second circular cosine wave
 
 function render() {
-    requestAnimationFrame(render);
+    // Clear the canvas
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     
-    // Draw helix 1
+    // Draw the circular axis
     ctx.beginPath();
-    ctx.strokeStyle = "#90e0f0"; // Light blue color for helix
-    for (var i = 0; i < 360; i += 20) {
-        var x = 200 + helixRadius * Math.cos((i + angle) * Math.PI / 180);
-        var y = 150 + helixRadius * Math.sin((i + angle) * Math.PI / 180);
-        ctx.moveTo(x, y);
-        var x2 = 200 + (helixRadius + helixWidth) * Math.cos((i + angle) * Math.PI / 180);
-        var y2 = 150 + (helixRadius + helixWidth) * Math.sin((i + angle) * Math.PI / 180);
-        ctx.lineTo(x2, y2);
-    }
+    ctx.arc(canvas.width / 2, canvas.height / 2, circleRadius, 0, Math.PI * 2);
     ctx.stroke();
     
-    // Draw helix 2
+    // Draw the first circular cosine wave
+    drawCircularCosineWave("#90e0f0", 0);
+    
+    // Draw the second circular cosine wave with a phase offset
+    drawCircularCosineWave("#5080a0", phaseOffset);
+}
+
+function drawCircularCosineWave(color, offset) {
+    ctx.fillStyle = color; // Color for the circles
+    ctx.strokeStyle = color; // Color for the lines
     ctx.beginPath();
-    for (var i = 0; i < 360; i += 20) {
-        var x = 200 + helixRadius * Math.cos((i + 180 + angle) * Math.PI / 180);
-        var y = 150 + helixRadius * Math.sin((i + 180 + angle) * Math.PI / 180);
-        ctx.moveTo(x, y);
-        var x2 = 200 + (helixRadius + helixWidth) * Math.cos((i + 180 + angle) * Math.PI / 180);
-        var y2 = 150 + (helixRadius + helixWidth) * Math.sin((i + 180 + angle) * Math.PI / 180);
-        ctx.lineTo(x2, y2);
+    for (var angle = 0; angle <= Math.PI * 2; angle += 0.01) {
+        var r = circleRadius + amplitude * Math.cos(angle * n + offset);
+        var x = canvas.width / 2 + r * Math.cos(angle);
+        var y = canvas.height / 2 + r * Math.sin(angle);
+        
+        // Draw a circle at each point along the circular cosine wave
+        ctx.beginPath();
+        ctx.arc(x, y, 2, 0, Math.PI * 2);
+        ctx.fill();
     }
-    ctx.stroke();
-    
-    // Update positions of blue balls
-    bx1 = 200 + helixRadius * Math.cos(angle * Math.PI / 180);
-    by1 = 150 + helixRadius * Math.sin(angle * Math.PI / 180);
-    bx2 = 200 + helixRadius * Math.cos((angle + 180) * Math.PI / 180);
-    by2 = 150 + helixRadius * Math.sin((angle + 180) * Math.PI / 180);
-    
-    // Draw blue balls
-    ctx.beginPath();
-    ctx.fillStyle = "#0000ff"; // Blue color for balls
-    ctx.arc(bx1, by1, br, 0, Math.PI * 2);
-    ctx.arc(bx2, by2, br, 0, Math.PI * 2);
-    ctx.fill();
-    
-    // Increment angle for animation
-    angle += 1;
 }
 
 render();
-</script>
+</script> -->
+
+
+
+<!-- <script>
+var canvas = document.getElementById("canvas");
+var ctx = canvas.getContext("2d");
+var amplitude = 20; // Amplitude of the cosine wave
+var circleRadius = 150; // Radius of the circular axis
+var n = 8; // Integer defining the number of cosine wave cycles
+
+function render() {
+    // Clear the canvas
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    
+    // Draw the circular axis
+    ctx.beginPath();
+    ctx.arc(canvas.width / 2, canvas.height / 2, circleRadius, 0, Math.PI * 2);
+    ctx.stroke();
+    
+    // Draw the circular cosine wave
+    ctx.fillStyle = "#90e0f0"; // Light blue color for the circles
+    ctx.strokeStyle = "#90e0f0"; // Light blue color for the lines
+    ctx.beginPath();
+    for (var angle = 0; angle <= Math.PI * 2; angle += 0.01) {
+        var r = circleRadius + amplitude * Math.cos(angle * n);
+        var x = canvas.width / 2 + r * Math.cos(angle);
+        var y = canvas.height / 2 + r * Math.sin(angle);
+        if (angle === 0) {
+            ctx.moveTo(x, y);
+        } else {
+            ctx.lineTo(x, y);
+        }
+    }
+    ctx.stroke();
+}
+
+render();
+</script> -->
+
+
+
+<!-- <script>
+var canvas = document.getElementById("canvas");
+var ctx = canvas.getContext("2d");
+var amplitude = 25; // Original amplitude
+var frequency = 0.05;
+var circleRadius = 5; // Radius of the circles
+var ballSpeed = 1; // Speed of the balls
+
+// Initial positions of the balls
+var lightBlueBallX = 0;
+var darkBlueBallX = 0;
+
+function render() {
+    // Clear the canvas
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    
+    // Draw the light blue cosine wave and move the light blue ball
+    ctx.fillStyle = "#90e0f0"; // Light blue color for the circles
+    for (var x = 0; x <= canvas.width; x++) {
+        var y = canvas.height / 2 - amplitude * Math.cos(frequency * x);
+        ctx.beginPath();
+        ctx.arc(x, y, circleRadius, 0, Math.PI * 2);
+        ctx.fill();
+    }
+    ctx.fillStyle = "#0000a0"; // Dark blue color for the light blue ball
+    ctx.beginPath();
+    var lightBlueBallY = canvas.height / 2 - amplitude * Math.cos(frequency * lightBlueBallX);
+    ctx.arc(lightBlueBallX, lightBlueBallY, circleRadius, 0, Math.PI * 2);
+    ctx.fill();
+    lightBlueBallX += ballSpeed;
+    if (lightBlueBallX > canvas.width) {
+        lightBlueBallX = 0;
+    }
+    
+    // Draw the slightly darker blue cosine wave and move the dark blue ball
+    ctx.fillStyle = "#5080a0"; // Slightly darker blue color for the circles
+    var phaseShift = (Math.PI / 8) / frequency; // Phase shift to achieve π/8
+    for (var x = 0; x <= canvas.width; x++) {
+        var y = canvas.height / 2 - amplitude * Math.cos(frequency * x + phaseShift);
+        ctx.beginPath();
+        ctx.arc(x, y, circleRadius, 0, Math.PI * 2);
+        ctx.fill();
+    }
+    ctx.fillStyle = "#800000"; // Red color for the dark blue ball
+    ctx.beginPath();
+    var darkBlueBallY = canvas.height / 2 - amplitude * Math.cos(frequency * darkBlueBallX + phaseShift);
+    ctx.arc(darkBlueBallX, darkBlueBallY, circleRadius, 0, Math.PI * 2);
+    ctx.fill();
+    darkBlueBallX += ballSpeed;
+    if (darkBlueBallX > canvas.width) {
+        darkBlueBallX = 0;
+    }
+    
+    // Request animation frame
+    requestAnimationFrame(render);
+}
+
+render();
+</script> -->
+
+
 </body>
 </html>
