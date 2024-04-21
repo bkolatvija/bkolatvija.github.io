@@ -32,7 +32,7 @@
 </div>
 
 <div id="main">
-	<canvas id="canvas" width="400" height="300"></canvas>
+	<canvas id="canvas" width="400" height="400"></canvas>
 	<br />
 	<div class="intro">
 		Bioloģijas Komandu Olimpiāde (BKO) ir bioloģijas konkurss vidusskolēniem un 9. klašu audzēkņiem.
@@ -61,6 +61,8 @@
     <a href="mailto:markuss.kenins@gmail.com">markuss.kenins@gmail.com</a>
     (Markuss G. Ķēniņš)
 </div>
+
+
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -110,18 +112,13 @@
 </script>
 
 
-
-
-
-
-
 <script>
 var canvas = document.getElementById("canvas");
 var ctx = canvas.getContext("2d");
 var amplitude = 20; // Amplitude of the cosine wave
 var circleRadius = 150; // Radius of the circular axis
 var n = 8; // Integer defining the number of cosine wave cycles
-var phaseOffset = Math.PI / 4; // Phase offset for the second circular cosine wave
+var phaseOffset = Math.PI / 2; // Phase offset for the second circular cosine wave
 var ballRadius = 5; // Radius of the balls
 var ballSpeed = 0.01; // Speed of the balls
 
@@ -134,9 +131,9 @@ function render() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     
     // Draw the circular axis
-    ctx.beginPath();
-    ctx.arc(canvas.width / 2, canvas.height / 2, circleRadius, 0, Math.PI * 2);
-    ctx.stroke();
+    // ctx.beginPath();
+    // ctx.arc(canvas.width / 2, canvas.height / 2, circleRadius, 0, Math.PI * 2);
+    // ctx.stroke();
     
     // Draw the first circular cosine wave
     drawCircularCosineWave("#90e0f0", 0);
@@ -186,96 +183,6 @@ function moveAndDrawBall(color, angle, offset) {
 
 render();
 </script>
-
-
-
-
-
-
-
-
-
-<!-- <script>
-var canvas = document.getElementById("canvas");
-var ctx = canvas.getContext("2d");
-var amplitude = 20; // Amplitude of the cosine wave
-var circleRadius = 150; // Radius of the circular axis
-var n = 8; // Integer defining the number of cosine wave cycles
-var phaseOffset = Math.PI / 4; // Phase offset for the second circular cosine wave
-
-function render() {
-    // Clear the canvas
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    
-    // Draw the circular axis
-    ctx.beginPath();
-    ctx.arc(canvas.width / 2, canvas.height / 2, circleRadius, 0, Math.PI * 2);
-    ctx.stroke();
-    
-    // Draw the first circular cosine wave
-    drawCircularCosineWave("#90e0f0", 0);
-    
-    // Draw the second circular cosine wave with a phase offset
-    drawCircularCosineWave("#5080a0", phaseOffset);
-}
-
-function drawCircularCosineWave(color, offset) {
-    ctx.fillStyle = color; // Color for the circles
-    ctx.strokeStyle = color; // Color for the lines
-    ctx.beginPath();
-    for (var angle = 0; angle <= Math.PI * 2; angle += 0.01) {
-        var r = circleRadius + amplitude * Math.cos(angle * n + offset);
-        var x = canvas.width / 2 + r * Math.cos(angle);
-        var y = canvas.height / 2 + r * Math.sin(angle);
-        
-        // Draw a circle at each point along the circular cosine wave
-        ctx.beginPath();
-        ctx.arc(x, y, 2, 0, Math.PI * 2);
-        ctx.fill();
-    }
-}
-
-render();
-</script> -->
-
-
-
-<!-- <script>
-var canvas = document.getElementById("canvas");
-var ctx = canvas.getContext("2d");
-var amplitude = 20; // Amplitude of the cosine wave
-var circleRadius = 150; // Radius of the circular axis
-var n = 8; // Integer defining the number of cosine wave cycles
-
-function render() {
-    // Clear the canvas
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    
-    // Draw the circular axis
-    ctx.beginPath();
-    ctx.arc(canvas.width / 2, canvas.height / 2, circleRadius, 0, Math.PI * 2);
-    ctx.stroke();
-    
-    // Draw the circular cosine wave
-    ctx.fillStyle = "#90e0f0"; // Light blue color for the circles
-    ctx.strokeStyle = "#90e0f0"; // Light blue color for the lines
-    ctx.beginPath();
-    for (var angle = 0; angle <= Math.PI * 2; angle += 0.01) {
-        var r = circleRadius + amplitude * Math.cos(angle * n);
-        var x = canvas.width / 2 + r * Math.cos(angle);
-        var y = canvas.height / 2 + r * Math.sin(angle);
-        if (angle === 0) {
-            ctx.moveTo(x, y);
-        } else {
-            ctx.lineTo(x, y);
-        }
-    }
-    ctx.stroke();
-}
-
-render();
-</script> -->
-
 
 
 <!-- <script>
