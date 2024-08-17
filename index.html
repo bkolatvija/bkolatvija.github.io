@@ -2,6 +2,7 @@
 <html>
 
 <head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
   <title>simplestyle_banner</title>
   <meta name="description" content="website description" />
   <meta name="keywords" content="website keywords, website keywords" />
@@ -15,24 +16,32 @@
       <div id="logo">
         <div id="logo_text">
           <!-- class="logo_colour", allows you to change the colour of the text -->
-          <h1><a href="index.html">simple<span class="logo_colour">style_banner</span></a></h1>
+          <h1><a href="index.html"><span class="logo_colour">Bioloģijas Komandu Olimpiāde</span></a></h1>
           <h2>Simple. Contemporary. Website Template.</h2>
         </div>
       </div>
       <div id="menubar">
         <ul id="menu">
           <!-- put class="selected" in the li tag for the selected page - to highlight which page you're on -->
-          <li class="selected"><a href="index.html">Home</a></li>
-          <li><a href="examples.html">Examples</a></li>
-          <li><a href="page.html">A Page</a></li>
-          <li><a href="another_page.html">Another Page</a></li>
-          <li><a href="contact.html">Contact Us</a></li>
+          <li class="selected"><a href="index.html">Sākums</a></li>
+          <li><a href="page.html">Nolikums</a></li>
+          <li><a href="page.html">Materiāli</a></li>
+          <li><a href="page.html">Arhīvs</a></li>
+          <li><a href="page.html">Biedrība</a></li>
+          <li><a href="examples.html">*</a></li>
+          <li><a href="contact.html">Kontakti</a></li>
         </ul>
       </div>
     </div>
     <div id="content_header"></div>
     <div id="site_content">
-      <div id="banner"></div>
+      <div id="banner">
+        <center>
+          <div class="center-box">
+            <canvas id="canvas" width="400" height="400"></canvas>
+          </div>
+        </center>
+      </div>
 	  <div id="sidebar_container">
         <div class="sidebar">
           <div class="sidebar_top"></div>
@@ -94,5 +103,80 @@
       <p>Copyright &copy; simplestyle_banner | <a href="http://validator.w3.org/check?uri=referer">HTML5</a> | <a href="http://jigsaw.w3.org/css-validator/check/referer">CSS</a> | <a href="http://www.html5webtemplates.co.uk">HTML5 Web Templates</a></p>
     </div>
   </div>
+
+  <!-- did not manage to add the BKO logo inside the animation -->
+
+
+  <script>
+    var canvas = document.getElementById("canvas");
+    var ctx = canvas.getContext("2d");
+    var amplitude = 20; // Amplitude of the cosine wave
+    var circleRadius = 150; // Radius of the circular axis
+    var n = 8; // Integer defining the number of cosine wave cycles
+    var phaseOffset = Math.PI / 2; // Phase offset for the second circular cosine wave
+    var ballRadius = 5; // Radius of the balls
+    var ballSpeed = 0.01; // Speed of the balls
+
+    // Initial positions of the balls
+    var ball1Angle = 0;
+    var ball2Angle = 0;
+
+    function render() {
+        // Clear the canvas
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        // Draw the circular axis
+        // ctx.beginPath();
+        // ctx.arc(canvas.width / 2, canvas.height / 2, circleRadius, 0, Math.PI * 2);
+        // ctx.stroke();
+
+        // Draw the first circular cosine wave
+        drawCircularCosineWave("#90e0f0", 0);
+
+        // Draw the second circular cosine wave with a phase offset
+        drawCircularCosineWave("#5080a0", phaseOffset);
+
+        // Move and draw the balls
+        moveAndDrawBall("#00008b", ball1Angle, 0);
+        moveAndDrawBall("#000033", ball2Angle, phaseOffset);
+
+        // Update ball angles for next frame
+        ball1Angle += ballSpeed;
+        ball2Angle += ballSpeed;
+
+        // Request next frame
+        requestAnimationFrame(render);
+    }
+
+    function drawCircularCosineWave(color, offset) {
+        ctx.fillStyle = color; // Color for the circles
+        ctx.strokeStyle = color; // Color for the lines
+        ctx.beginPath();
+        for (var angle = 0; angle <= Math.PI * 2; angle += 0.01) {
+            var r = circleRadius + amplitude * Math.cos(angle * n + offset);
+            var x = canvas.width / 2 + r * Math.cos(angle);
+            var y = canvas.height / 2 + r * Math.sin(angle);
+
+            // Draw a circle at each point along the circular cosine wave
+            ctx.beginPath();
+            ctx.arc(x, y, ballRadius, 0, Math.PI * 2); // Draw circles with 3 times the radius for thicker appearance
+            ctx.fill();
+        }
+    }
+
+    function moveAndDrawBall(color, angle, offset) {
+        var r = circleRadius + amplitude * Math.cos(angle * n + offset);
+        var x = canvas.width / 2 + r * Math.cos(angle);
+        var y = canvas.height / 2 + r * Math.sin(angle);
+
+        // Draw the ball
+        ctx.fillStyle = color;
+        ctx.beginPath();
+        ctx.arc(x, y, ballRadius, 0, Math.PI * 2);
+        ctx.fill();
+    }
+
+    render();
+  </script>
 </body>
 </html>
