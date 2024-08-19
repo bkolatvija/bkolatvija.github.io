@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap');
+
 html
 { height: 100%;}
 
@@ -6,48 +8,38 @@ html
   padding: 0;}
 
 body
-{ font: normal .80em 'trebuchet ms', arial, sans-serif;
+{ font: normal .80em 'Open Sans', arial, sans-serif;
   background: #FFF;
-  color: #555;}
+  color: #000;}
 
 p
 { padding: 0 0 20px 0;
+  font-size: 120%;
   line-height: 1.7em;}
 
 img
 { border: 0;}
 
-h1, h2, h3, h4, h5, h6 
-{ color: #362C20;
-  letter-spacing: 0em;
-  padding: 0 0 5px 0;}
-
 h1, h2, h3
-{ font: normal 170% 'century gothic', arial;
+{ letter-spacing: 0em;
+  padding: 0 0 5px 0;
+  font: normal 'Open Sans', arial;
   margin: 0 0 15px 0;
   padding: 15px 0 5px 0;
+}
+
+h1
+{ font-size: 180%;
   color: #000;}
 
 h2
-{ font-size: 160%;
+{ font-size: 120%;
   padding: 9px 0 5px 0;
-  color: #009FBC;}
+  color: #000;}
 
 h3
 { font-size: 140%;
-  padding: 5px 0 0 0;}
-
-h4, h6
-{ color: #009FBC;
-  padding: 0 0 5px 0;
-  font: normal 110% arial;
-  text-transform: uppercase;}
-
-h5, h6
-{ color: #888;
-  font: normal 95% arial;
-  letter-spacing: normal;
-  padding: 0 0 15px 0;}
+  color: #000;}
 
 a, a:hover
 { outline: none;
@@ -98,11 +90,7 @@ ol li
 #main, #logo, #menubar, #site_content, #footer
 { margin-left: auto; 
   margin-right: auto;}
-
-#header
-{ background: #323534 url(back.png) repeat-x;
-  height: 177px;}
-  
+/*  
 #banner
 { 
   background: transparent url(bkobanner4.jpg) no-repeat;
@@ -110,32 +98,53 @@ ol li
   height: 180px;
   margin-bottom: 20px;
   border: 10px solid #DDD;}
+*/
+
+#header {
+  background: #2E5045;
+  height: 200px;
+  position: relative; /* Make the header a positioning context */
+} 
 
 #logo
-{ width: 880px;
+{ width: 1000px;
   position: relative;
-  height: 140px;
+  height: 200px;
+  display: flex; /* Use flexbox for alignment */
+  align-items: center; /* Center items vertically */
   background: transparent;}
 
-#logo #logo_text 
-{ position: absolute; 
-  top: 10px;
-  left: 0;}
+#logo img {
+  /*width="443" height="283"*/
+  width: 235px; /* Set the width of your logo */
+  height: calc(235/443*283)px;
+  margin-right: 0px; /* Space between logo and text */
+}
+
+#logo_text {
+  position: absolute;
+  top: 36%; /* Vertically center the text */
+  left: 255px; /* Align to the right side */
+  transform: translateY(-50%); /* Adjust for vertical centering */
+  text-align: left; /* Align the text to the right */
+}
 
 #logo h1, #logo h2
-{ font: normal 300% 'century gothic', arial, sans-serif;
-  border-bottom: 0;
+{ font: normal 343% 'Open Sans', arial, sans-serif;
+  width: 745px;
+  border-bottom: 10;
+  right:0;
   text-transform: none;
-  margin: 0 0 0 9px;}
+  margin: 0 0 0 0;}
 
 #logo_text h1, #logo_text h1 a, #logo_text h1 a:hover 
-{ padding: 22px 0 0 0;
+{ padding: 20 0 0 0;
   color: #FFF;
   letter-spacing: 0.1em;
   text-decoration: none;}
 
 #logo_text h1 a .logo_colour
-{ color: #E4EC04;}
+{ color: #FFF;}
 
 #logo_text a:hover .logo_colour
 { color: #FFF;}
@@ -144,89 +153,106 @@ ol li
 { font-size: 120%;
   padding: 4px 0 0 0;
   color: #999;}
-
-#menubar
-{ width: 880px;
-  height: 46px;
-  float: center;
-} 
-
-ul#menu
-{ float: center;
-  margin: 0;
-  width: 880px;
-  height: 46px;
+  
+  #menubar {
+    width: 1000px; /* Fixed width for the menubar */
+    position: absolute; /* Position the menubar absolutely */
+    bottom: 25px; /* Align it to the bottom */
+    left: 50%; /* Center it horizontally */
+    transform: translateX(-50%); /* Adjust for centering */
 }
 
-ul#menu li
-{ float: left;
-  padding: 0 0 0 9px;
-  list-style: none;
-  margin: 1px 3px 0 0;
-  background: #5A5A5A url(tab.png) no-repeat 0 0;}
+ul#menu {
+    margin: 0; /* Remove default margin */
+    padding: 0; /* Remove default padding */
+    width: 100%; /* Use full width for flexbox */
+    display: flex; /* Use flexbox for menu items */
+    justify-content: flex-end; /* Align items to the right */
+}
 
-ul#menu li a
-{ font: normal 100% 'trebuchet ms', sans-serif;
-  display: block; 
-  float: left; 
-  height: 20px;
-  padding: 6px 35px 5px 28px;
-  text-align: center;
+ul#menu li {
+    margin: 0; /* Ensure no margin between list items */
+    padding: 5px; /* Ensure no padding between list items */
+    list-style-type: none !important;
+}
+
+ul#menu li a {
+    font: normal 100% 'Open Sans', sans-serif;
+    font-size: 150%;
+    display: block; 
+    width: calc(695px / 6); /* Adjusted width for 6 items */
+    padding: 0; /* Remove padding to eliminate space */
+    height: 50px; /* Set height for the menu items */
+    line-height: 50px; /* Center text vertically */
+    text-align: center; /* Center text horizontally */
+    color: #FFF; /* Text color */
+    text-decoration: none; /* Remove underline */
+    background-color: none; /* Default background for links */
+    border: none; /* Remove any borders that might cause spacing */
+}
+
+/* Styles for the selected menu item */
+ul#menu li.selected a {
+  background-color: green; /* Change background to green */
+  color: #FFF; /* Keep text color white */
+  height: 50px; /* Increase height for selected item */
+  border-radius: 50px;
+}
+
+ul#menu li.selected {
+  margin: 0 0 0 0; /* Maintain margin */
+}
+
+ul#menu li.selected a, ul#menu li.selected a:hover { 
   color: #FFF;
-  text-decoration: none;
-  background: #5A5A5A url(tab.png) no-repeat 100% 0;} 
+}
 
-ul#menu li.selected a
-{ height: 20px;
-  padding: 6px 35px 5px 28px;}
-
-ul#menu li.selected
-{ margin: 1px 3px 0 0;
-  background: #00C6F0 url(tab_selected.png) no-repeat 0 0;}
-
-ul#menu li.selected a, ul#menu li.selected a:hover
-{ background: #00C6F0 url(tab_selected.png) no-repeat 100% 0;
-  color: #FFF;}
-
-ul#menu li a:hover
-{ color: #E4EC04;}
-
+ul#menu li a:hover { 
+  color: #E4EC04;
+  background-color: green; /* Change background to green */
+  color: #FFF; /* Keep text color white */
+  height: 50px; /* Increase height for selected item */
+  border-radius: 50px;
+}
+  
 #site_content
-{ width: 880px;
+{ width: 1000px;
   overflow: hidden;
   margin: 20px auto 0 auto;
   padding: 0 0 10px 0;} 
 
-#sidebar_container
-{ float: right;
-  width: 224px;}
+  #sidebar_container {
+    float: right;
+    width: 224px;
+    background-color: #f4f4f4; /* Light grey background for the sidebar */
+    border-radius: 10px; /* Rounded corners */
+    padding: 16px; /* Padding inside the box */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Optional: Add a subtle shadow for depth */
+}
 
-.sidebar_top
-{ width: 222px;
-  height: 14px;
-  background: transparent url(side_top.png) no-repeat;}
+.sidebar {
+    width: 100%; /* Make the sidebar content take up the full width */
+    padding: 0;
+    margin: 0 0 16px 0;
+}
 
-.sidebar_base
-{ width: 222px;
-  height: 14px;
-  background: url(side_base.png) no-repeat;}
+.sidebar_item {
+    background-color: #fff; /* White background for each item */
+    border-radius: 8px; /* Rounded corners for each item */
+    padding: 10px; /* Padding inside each item */
+    margin-bottom: 10px; /* Space between items */
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1); /* Optional: Add a shadow to each item */
+}
 
-.sidebar
-{ float: right;
-  width: 222px;
-  padding: 0;
-  margin: 0 0 16px 0;}
+.sidebar li a.selected {
+    color: #444; /* Darker color for selected items */
+}
 
-.sidebar_item
-{ background: url(side_back.png) repeat-y;
-  padding: 0 15px;
-  width: 192px;}
-
-.sidebar li a.selected
-{ color: #444;} 
-
-.sidebar ul
-{ margin: 0;} 
+.sidebar ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none; /* Remove bullet points */
+}
 
 #content
 { text-align: left;
@@ -244,6 +270,22 @@ ul#menu li a:hover
   padding: 0 0 4px 25px;
   line-height: 1.5em;}
 
+  #content2
+  { text-align: left;
+    width: 1000px;
+    padding: 0 0 0 5px;
+    float: left;}
+    
+  #content2 ul
+  { margin: 2px 0 22px 0px;}
+  
+  #content2 ul li, .sidebar ul li
+  { list-style-type: none;
+    background: url(bullet.png) no-repeat;
+    margin: 0 0 0 0; 
+    padding: 0 0 4px 25px;
+    line-height: 1.5em;}
+
 #footer
 { width: 100%;
   font-family: 'trebuchet ms', sans-serif;
@@ -251,7 +293,7 @@ ul#menu li a:hover
   height: 80px;
   padding: 28px 0 5px 0;
   text-align: center; 
-  background: #3B3939 url(footer.png) repeat-x;
+  background: #2E5045;
   color: #A8AA94;}
 
 #footer p

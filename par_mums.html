@@ -1,0 +1,174 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+  <title>BKO</title>
+  <link rel="icon" href="style/bkologo.png" type="image/png"> 
+  <meta name="description" content="website description" />
+  <meta name="keywords" content="website keywords, website keywords" />
+  <meta http-equiv="content-type" content="text/html; charset=windows-1252" />
+  <link rel="stylesheet" type="text/css" href="style/style.css" />
+</head>
+
+<body>
+  <div id="main">
+    <div id="header">
+      <div id="logo">
+        <img src="bko_logo_official.svg" alt="BKO Logo" id="logo_image" />
+        <div id="logo_text">
+          <!-- class="logo_colour", allows you to change the colour of the text -->
+          <h1><a href="index.html"><span class="logo_colour">Bioloģijas komandu olimpiāde</span></a></h1>
+        </div>
+      </div>
+      <div id="menubar">
+        <ul id="menu">
+          <!-- put class="selected" in the li tag for the selected page - to highlight which page you're on -->
+          <li><a href="index.html">Sākums</a></li>
+          <li><a href="olimpiāde.html">Olimpiāde</a></li>
+          <li><a href="zināšanas.html">Zināšanas</a></li>
+          <li><a href="arhīvs.html">Arhīvs</a></li>
+          <li><a href="foto.html">Foto</a></li>
+          <!-- <li><a href="examples.html">*</a></li> -->
+          <li class="selected"><a href="par_mums.html">Par mums</a></li>
+        </ul>
+        <script>
+          document.addEventListener("DOMContentLoaded", function() {
+            // Define your colors
+            var colors = ["#2E9967","#5271A5","#B35595"];
+            // Get the selected menu item
+            var selectedMenuItem = document.querySelector('ul#menu li.selected a');
+            // Randomly select a color
+            var randomColor = colors[Math.floor(Math.random() * colors.length)];
+            // Apply the random color as the background color
+            selectedMenuItem.style.backgroundColor = randomColor;
+          });
+        </script>
+        <script>
+          var colors = ["#2E9967", "#5271A5", "#B35595"];
+
+          // Select all menu items
+          var menuItems = document.querySelectorAll('ul#menu li a');
+
+          // Add event listeners to each menu item for hover effect
+          menuItems.forEach(function(item) {
+              item.addEventListener('mouseover', function() {
+                  // Check if the parent li has the 'selected' class
+                  if (!item.parentElement.classList.contains('selected')) {
+                      // Randomly select a color
+                      var randomColor = colors[Math.floor(Math.random() * colors.length)];
+                      // Apply the random color as the background color
+                      item.style.backgroundColor = randomColor;
+                  }
+              });
+
+              item.addEventListener('mouseout', function() {
+                  // Check if the parent li has the 'selected' class
+                  if (!item.parentElement.classList.contains('selected')) {
+                      // Reset to the original background color when hover ends
+                      item.style.backgroundColor = "transparent";
+                  }
+              });
+          });
+      </script>
+      </div>
+    </div>
+    <div id="content_header"></div>
+    <div id="site_content">
+      <!-- This is a comment 
+      <div id="banner">
+        <center>
+          <div class="center-box">
+            <canvas id="canvas" width="400" height="400"></canvas>
+          </div>
+        </center>
+      </div>-->
+
+      <div id="content2">
+        <!-- insert the page content here -->
+        <h1>Bioloģijas komandu olimpiāde</h1>
+        <h1>Bioloģijas popularizēšanas biedrība</h1>
+      </div>
+    </div>
+    <div id="content_footer"></div>
+    <div id="footer">
+      <p>Epasts: biokomandas@gmail.com | Instagram: @biologijas_olimpiade | Facebook: Bioloģijas komandu olimpiāde | Copyright &copy; Bioloģijas popularizēšanas biedrība </p>
+    </div>
+  </div>
+
+  <!-- did not manage to add the BKO logo inside the animation -->
+
+
+  <script>
+    var canvas = document.getElementById("canvas");
+    var ctx = canvas.getContext("2d");
+    var amplitude = 20; // Amplitude of the cosine wave
+    var circleRadius = 150; // Radius of the circular axis
+    var n = 8; // Integer defining the number of cosine wave cycles
+    var phaseOffset = Math.PI / 2; // Phase offset for the second circular cosine wave
+    var ballRadius = 5; // Radius of the balls
+    var ballSpeed = 0.01; // Speed of the balls
+
+    // Initial positions of the balls
+    var ball1Angle = 0;
+    var ball2Angle = 0;
+
+    function render() {
+        // Clear the canvas
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        // Draw the circular axis
+        // ctx.beginPath();
+        // ctx.arc(canvas.width / 2, canvas.height / 2, circleRadius, 0, Math.PI * 2);
+        // ctx.stroke();
+
+        // Draw the first circular cosine wave
+        drawCircularCosineWave("#90e0f0", 0);
+
+        // Draw the second circular cosine wave with a phase offset
+        drawCircularCosineWave("#5080a0", phaseOffset);
+
+        // Move and draw the balls
+        moveAndDrawBall("#00008b", ball1Angle, 0);
+        moveAndDrawBall("#000033", ball2Angle, phaseOffset);
+
+        // Update ball angles for next frame
+        ball1Angle += ballSpeed;
+        ball2Angle += ballSpeed;
+
+        // Request next frame
+        requestAnimationFrame(render);
+    }
+
+    function drawCircularCosineWave(color, offset) {
+        ctx.fillStyle = color; // Color for the circles
+        ctx.strokeStyle = color; // Color for the lines
+        ctx.beginPath();
+        for (var angle = 0; angle <= Math.PI * 2; angle += 0.01) {
+            var r = circleRadius + amplitude * Math.cos(angle * n + offset);
+            var x = canvas.width / 2 + r * Math.cos(angle);
+            var y = canvas.height / 2 + r * Math.sin(angle);
+
+            // Draw a circle at each point along the circular cosine wave
+            ctx.beginPath();
+            ctx.arc(x, y, ballRadius, 0, Math.PI * 2); // Draw circles with 3 times the radius for thicker appearance
+            ctx.fill();
+        }
+    }
+
+    function moveAndDrawBall(color, angle, offset) {
+        var r = circleRadius + amplitude * Math.cos(angle * n + offset);
+        var x = canvas.width / 2 + r * Math.cos(angle);
+        var y = canvas.height / 2 + r * Math.sin(angle);
+
+        // Draw the ball
+        ctx.fillStyle = color;
+        ctx.beginPath();
+        ctx.arc(x, y, ballRadius, 0, Math.PI * 2);
+        ctx.fill();
+    }
+
+    render();
+  </script>
+</body>
+</html>
