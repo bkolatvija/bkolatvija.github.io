@@ -3,6 +3,7 @@
 
 <head>
   <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>BKO</title>
   <link rel="icon" href="style/bkologo.png" type="image/png"> 
   <meta name="description" content="website description" />
@@ -18,18 +19,17 @@
         <img src="bko_logo_official.svg" alt="BKO Logo" id="logo_image" />
         <div id="logo_text">
           <!-- class="logo_colour", allows you to change the colour of the text -->
-          <h1><a href="index.html"><span class="logo_colour">Bioloģijas komandu olimpiāde</span></a></h1>
+          <h1><a href="index.html"><span class="word color1">Bioloģijas</span> <span class="word color2">komandu</span> <span class="word color3">olimpiāde</span></a></h1>
         </div>
       </div>
       <div id="menubar">
         <ul id="menu">
           <!-- put class="selected" in the li tag for the selected page - to highlight which page you're on -->
           <li><a href="index.html">Sākums</a></li>
-          <li><a href="olimpiāde.html">Olimpiāde</a></li>
-          <li class="selected"><a href="zināšanas.html">Zināšanas</a></li>
-          <li><a href="arhīvs.html">Arhīvs</a></li>
+          <li class="selected"><a href="olimpiade.html">Olimpiāde</a></li>
+          <li><a href="zinasanas.html">Zināšanas</a></li>
+          <li><a href="arhivs.html">Arhīvs</a></li>
           <li><a href="foto.html">Foto</a></li>
-          <!-- <li><a href="examples.html">*</a></li> -->
           <li><a href="par_mums.html">Par mums</a></li>
         </ul>
         <script>
@@ -44,62 +44,69 @@
             selectedMenuItem.style.backgroundColor = randomColor;
           });
         </script>
-        <script>
-          var colors = ["#2E9967", "#5271A5", "#B35595"];
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    // Function to check if the device is a computer
+    function isComputer() {
+      return window.innerWidth >= 1024; // Define the threshold for computer screens
+    }
 
-          // Select all menu items
-          var menuItems = document.querySelectorAll('ul#menu li a');
+    if (isComputer()) {
+      var colors = ["#2E9967", "#5271A5", "#B35595"];
 
-          // Add event listeners to each menu item for hover effect
-          menuItems.forEach(function(item) {
-              item.addEventListener('mouseover', function() {
-                  // Check if the parent li has the 'selected' class
-                  if (!item.parentElement.classList.contains('selected')) {
-                      // Randomly select a color
-                      var randomColor = colors[Math.floor(Math.random() * colors.length)];
-                      // Apply the random color as the background color
-                      item.style.backgroundColor = randomColor;
-                  }
-              });
+      // Select all menu items
+      var menuItems = document.querySelectorAll('ul#menu li a');
 
-              item.addEventListener('mouseout', function() {
-                  // Check if the parent li has the 'selected' class
-                  if (!item.parentElement.classList.contains('selected')) {
-                      // Reset to the original background color when hover ends
-                      item.style.backgroundColor = "transparent";
-                  }
-              });
-          });
-      </script>
+      // Add event listeners to each menu item for hover effect
+      menuItems.forEach(function(item) {
+        item.addEventListener('mouseover', function() {
+          // Check if the parent li has the 'selected' class
+          if (!item.parentElement.classList.contains('selected')) {
+            // Randomly select a color
+            var randomColor = colors[Math.floor(Math.random() * colors.length)];
+            // Apply the random color as the background color
+            item.style.backgroundColor = randomColor;
+          }
+        });
+
+        item.addEventListener('mouseout', function() {
+          // Check if the parent li has the 'selected' class
+          if (!item.parentElement.classList.contains('selected')) {
+            // Reset to the original background color when hover ends
+            item.style.backgroundColor = "transparent";
+          }
+        });
+      });
+    }
+  });
+</script>
+
       </div>
     </div>
     <div id="content_header"></div>
     <div id="site_content">
-      <!-- This is a comment 
-      <div id="banner">
-        <center>
-          <div class="center-box">
-            <canvas id="canvas" width="400" height="400"></canvas>
-          </div>
-        </center>
-      </div>-->
+      <h2>Virsraksts</h2>
+      <p>Šeit ievietojam nolikuma, satura <a href="http://creativecommons.org/licenses/by/3.0">dokumentus</a>.</p>
+      <p>Šādi var <strong>boldot</strong> un <em>italicisot</em>. Šādi var veidot listu:</p>
 
-      <div id="content2">
-        <!-- insert the page content here -->
-        <p>Šeit iesakām Campbellu un testiņus. Šie BKO organizatoru veidotie teorijas un uzdevumu materiāli papildina šo grāmatu un iepazīstina ar citām noderīgām, svarīgām, interesantām tēmām bioloģijā un saistītajās nozarēs.</p>
-        <h1>Saturs</h1>
-        <h3>Augu bioloģija</h3>
-        <ul>
-          <li><a href="http://creativecommons.org/licenses/by/3.0">Polārais transports</a></li>
-          <li>FireFox 25</li>
-          <li>Google Chrome 31</li>
-        </ul>
-      </div>
-    </div>
+
+      <ul>
+        <li>Internet Explorer 9</li>
+        <li>FireFox 25</li>
+        <li>Google Chrome 31</li>
+      </ul>
+  </div>
+  
     <div id="content_footer"></div>
     <div id="footer">
-      <p>Epasts: biokomandas@gmail.com | Instagram: @biologijas_olimpiade | Facebook: Bioloģijas komandu olimpiāde | Copyright &copy; Bioloģijas popularizēšanas biedrība </p>
+      <p>
+        <span>Epasts: biokomandas@gmail.com</span>
+        <span>Instagram: @biologijas_olimpiade</span>
+        <span>Facebook: <a href="https://www.facebook.com/biokomandas">facebook.com/biokomandas</a></span>
+        <span>Copyright &copy; Bioloģijas popularizēšanas biedrība</span>
+      </p>
     </div>
+  </div>
   </div>
 
   <!-- did not manage to add the BKO logo inside the animation -->
