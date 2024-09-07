@@ -1,16 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Capriola&family=Righteous&display=swap');
 
-/*
-Olimpiādes krāsu kodi
-green: #52BF8D
-dark green: #2E9967
-very dark green: #2E5045
-blue: #8BA1C8
-dark blue: #5271A5
-purple: #D596C1
-dark purple: #B35595
-*/
+
 html {
     font-size: 16px; /* Base font size for easy scaling */
 }
@@ -24,24 +15,46 @@ body {
     color: #000;
 }
 
+:root {
+  --lightgreen:#93c0ab;
+  --green: #52BF8D;
+  --darkgreen: #2E9967;
+  --verydarkgreen: #2E5045;
+  --lightblue:#b4c1d7;
+  --blue:#8BA1C8;
+  --darkblue:#5271A5;
+  --lightpurple:#d3b2c9;
+  --purple:#D596C1;
+  --darkpurple:#B35595;
+}
+
+.color1 { color: #52BF8D; }
+.color2 { color: #8BA1C8; }
+.color3 { color: #D596C1; }
+
 p {
     padding: 0 0 0 0;
     font-size: 1rem;
     line-height: 1.7em;
 }
 
+b {
+  color: var(--verydarkgreen); /* Replace with your desired color */
+}
+
 img {
     border: 0;
 }
 
-h1, h2, h3 {
+h1, h2, h3, h4 {
     letter-spacing: 0em;
-    margin: 0 0 15px 0;
-    padding: 15px 0 5px 0;
+
 }
 
 h1 {
     font: normal 290% 'Capriola', arial;
+    margin: 0 0 0 0;
+    padding: 0 0 0 0;
     color: #000;
 }
 
@@ -54,6 +67,11 @@ h3 {
     font: normal 80% 'Open Sans', arial;
     padding: 0px 0 10px 0;
     color: #000;
+}
+
+h4 {
+  font: bold 120% 'Open Sans', arial;
+  color: var(--verydarkgreen);
 }
 
 a, a:hover {
@@ -105,6 +123,16 @@ ul li, ol li {
   padding: 20px;
   text-align: center;
   position: relative; /* Make the header a positioning context */
+  overflow: auto; /* Allow the header to expand based on its content */
+}
+
+#alt_header {
+  background: #2E5045;
+  height: 100px;
+  padding: 20px;
+  text-align: center;
+  position: relative; /* Make the header a positioning context */
+  overflow: auto; /* Allow the header to expand based on its content */
 }
 
 #logo {
@@ -119,6 +147,20 @@ ul li, ol li {
   width: 28%;
   height: auto;
   margin: 0;
+}
+
+#alternative_logo {
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  position: relative; /* Make the logo container a positioning context */
+}
+
+#alternative_logo img {
+  width: 30%;
+  height: auto;
+  margin:0;
 }
 
 #logo_text {
@@ -183,6 +225,22 @@ ul#menu li.selected a, ul#menu li a:hover {
   border-radius: 25px;
 }
 
+#back-to-main {
+  font: normal 130% 'Capriola', sans-serif;
+  position: absolute; /* Position it absolutely within the header */
+  bottom: 10px; /* Position it 10px from the bottom */
+  left: 10px; /* Position it 10px from the left */
+  font-size: 18px; /* Larger font size */
+  color: #FFF; /* White text color */
+  text-decoration: none; /* Remove underline from the link */
+  padding: 5px 10px; /* Add padding around the text */
+  left: 15%;
+}
+
+#back-to-main:hover {
+  background-color: var(--darkgreen); /* Lighter blue background on hover */
+  border-radius: 8px;
+}
 
 #site_content {
     width: 70%;
@@ -225,8 +283,6 @@ ul#menu li.selected a, ul#menu li a:hover {
 .sidebar_item h3 {
     color: #fff; }
 
-
-
 #footer {
     width: 100%;
     font-family: 'trebuchet ms', sans-serif;
@@ -235,7 +291,15 @@ ul#menu li.selected a, ul#menu li a:hover {
     padding: 20px 0;
     text-align: center; 
     background: #2E5045;
-    color: #2E9967;
+    color: #fff;
+}
+#footer a {
+  color: #FFF; /* Set the text color of links in the footer to white */
+  text-decoration: none; /* Remove underline from the links */
+}
+
+#footer a:hover {
+  text-decoration: underline; /* Optionally, add underline on hover for better visibility */
 }
 #footer p {
   margin: 0;
@@ -257,7 +321,6 @@ ul#menu li.selected a, ul#menu li a:hover {
   content: ""; /* Remove the separator before the first item */
 }
 
-
 .center-box {
     width: 100px;
     height: 100px;
@@ -277,11 +340,274 @@ ul#menu li.selected a, ul#menu li a:hover {
   display: inline;
 }
 
-.color1 { color: #52BF8D; }
-.color2 { color: #8BA1C8; }
-.color3 { color: #D596C1; }
+.image-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 100%;
+}
 
+/* Individual image containers */
+.image-container .image-box {
+  flex: 1;
+  text-align: center;
+  padding: 10px;
+  position: relative;
+}
 
+/* Centering images within their container */
+.image-container .image-box img {
+  display: block;
+  margin: 0 auto;
+  max-width: 100%;
+  max-height: 100%; /* Ensures the image doesn't exceed its container size */
+  height: auto; /* Maintains aspect ratio */
+  width: auto; /* Maintains aspect ratio */
+}
+
+/* Caption box for image containers */
+.image-container .caption {
+  background-color: #f0f0f0;
+  padding: 10px;
+  margin-top: 10px;
+  text-align: justify;
+  border-radius: 5px;
+}
+
+/* Container for a single image */
+.image-container.single-image {
+  justify-content: center; /* Center the single image */
+  display: flex;
+}
+
+.image-container.single-image .image-box {
+  max-width: 100%; /* Optional: limit the width of the single image container */
+  text-align: center; /* Center content within the image box */
+}
+
+.text-image-container {
+  display: flex;
+  width: 100%;
+  align-items: flex-start; /* Align items to the start of the container */
+  gap: 20px; /* Space between text and image */
+}
+
+/* Text container */
+.text-container {
+  flex: 1; /* Take up the remaining space */
+  text-align: justify; /* Justify text */
+}
+
+/* Image container */
+.image-container {
+  flex-shrink: 0; /* Prevent shrinking */
+  width: auto; /* Let width be controlled by inline styles */
+}
+
+/* Figure element to wrap image and caption */
+.image-container figure {
+  margin: 0; /* Reset margin */
+  width: 100%; /* Full width of the image container */
+}
+
+/* Image element */
+.image-container img {
+  width: 100%; /* Scale image to container width */
+  height: auto;
+  display: block; /* Ensure image is a block element */
+}
+
+/* Caption box for the image */
+.image-container .caption {
+  background-color: #f0f0f0;
+  padding: 10px;
+  text-align: center; /* Justify text within the caption */
+  border-radius: 5px;
+  margin-top: 10px; /* Space between image and caption */
+  display: inline-block; /* Make the caption width fit its content */
+  box-sizing: border-box; /* Include padding in width calculation */
+  /* Default to width set by inline styles if not overridden */
+}
+
+/* Common styles for both task types */
+.task-showans-container, .task-check-answers-container {
+  background: var(--lightblue);
+  border: 1px solid #000000;
+  border-radius: 5px;
+  padding: 20px;
+  margin: 40px 10px 40px 10px;
+}
+
+/* Styles for buttons */
+.toggle-answer-btn, .show-answer-btn, .check-answer-btn {
+    background-color: var(--darkgreen);
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1em;
+    cursor: pointer;
+    border-radius: 5px;
+    margin: 10px 0;
+}
+
+/* Specific button styles */
+.show-answer-btn {
+    background-color: #2E9967; /* Green for "Show Answer" */
+}
+
+.check-answer-btn {
+    background-color: #2E9967; /* Green for "Check Answer" */
+}
+
+/* Hide answer container initially */
+.answer-container {
+    display: none;
+}
+
+/* Styles for dynamic questions */
+.question {
+    margin-bottom: 20px;
+}
+
+/* Styles for text input questions */
+.answer-input-container {
+    margin-top: 10px;
+}
+
+.question-input {
+    width: 250px; /* Make the input boxes larger */
+    padding: 5px;
+    font-size: 1em;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.question-text {
+    margin-left: 10px;
+}
+
+/* Styles for multiple-choice and multi-select questions */
+.multiple-choice-container, .multi-select-container {
+  margin-top: 10px;
+  border-radius: 5px;
+  padding: 10px;
+  display: inline-block; /* Adjust the size to fit the longest item */
+  width: auto; /* Ensure the width adjusts automatically */
+}
+
+.multiple-choice-container label, .multi-select-container label {
+    display: flex;
+    align-items: center;
+    margin-bottom: 3px; /* Reduce the spacing between items */
+}
+
+.multiple-choice-container input[type="radio"], .multi-select-container input[type="checkbox"] {
+    margin-right: 10px;
+    width: 20px; /* Make the circles/boxes bigger */
+    height: 20px; /* Make the circles/boxes bigger */
+}
+
+/* Correct and incorrect styles for question containers */
+.correct-answer {
+    border-color: lightgreen;
+    background-color: lightgreen; /* Light green background for correct */
+}
+
+.incorrect-answer {
+    border-color: salmon;
+    background-color: salmon; /* Light red background for incorrect */
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse; /* Combines borders into a single border */
+}
+th, td {
+  border: 1px solid #000; /* Adds border to each cell */
+  padding: 10px;
+  text-align: left; /* Centers the content inside each cell */
+}
+
+/* Triangle pointing right */
+.triangle-right {
+  display: inline-block;
+  width: 0;
+  height: 0;
+  margin-right: 8px;
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  border-left: 8px solid var(--verydarkgreen); /* Color of the triangle */
+}
+
+/* Triangle pointing down */
+.triangle-down {
+  display: inline-block;
+  width: 0;
+  height: 0;
+  margin-right: 8px;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 8px solid var(--verydarkgreen); /* Color of the triangle */
+}
+
+/* Initially hide the attribution content */
+.hidden {
+  display: none;
+}
+
+/* Style for the toggle text */
+#attribution-toggle {
+  cursor: pointer;
+  font-weight: bold;
+  color: var(--verydarkgreen);
+}
+
+/* Optionally, add some styling when the content is visible */
+#attribution-content.visible {
+  display: block;
+  margin-top: 10px;
+}
+@media only screen and (max-width: 850px) {
+  body {
+      font-size: 0.95em; /* Slightly smaller font size */
+  }
+
+  h1 {
+      font-size: 260%; /* Reduce h1 font size for iPad */
+      margin: 10px 0; /* Adjust margin for better spacing */
+      padding: 5px 0;
+  }
+
+  ul#menu {
+    flex-direction: row; /* Ensure menu items are still in a row on iPad */
+    justify-content: space-evenly; /* Space out menu items evenly */
+  }
+
+  ul#menu li {
+    width: auto; /* Ensure menu items adjust to their content */
+    max-width: none;
+    padding: 5px 10px; /* Adjust padding to fit the screen */
+    margin: 0;
+  }
+
+  ul#menu li a {
+    font-size: 120%; /* Reduce menu item font size */
+    padding: 10px 15px; /* Adjust padding for a better fit */
+  }
+
+  #logo img {
+      width: 35%; /* Adjust the logo size for iPad */
+  }
+
+  #site_content {
+    width: 85%; /* Adjust content width to fit the iPad screen */
+  }
+
+  #sidebar_container {
+    width: 80%; /* Adjust sidebar width for better fit on iPad */
+    margin: 20px auto; /* Center the sidebar */
+  }
+}
 
 @media only screen and (max-width: 600px) {
   body {
@@ -324,6 +650,27 @@ ul#menu li.selected a, ul#menu li a:hover {
     display: block;
     font-size: 150%; /* Adjust font size to be smaller */
     padding: 7px 15px; /* Adjust padding for smaller menu items */
+  }
+
+  
+  #back-to-main {
+    font: normal 130% 'Capriola', sans-serif;
+    position: absolute; /* Position it absolutely within the header */
+    bottom: 10px; /* Position it 10px from the bottom */
+    left: 10px; /* Position it 10px from the left */
+    font-size: 18px; /* Larger font size */
+    color: #FFF; /* White text color */
+    text-decoration: none; /* Remove underline from the link */
+    padding: 5px 10px; /* Add padding around the text */
+    left: 5%;
+  }
+
+  .image-container.single-image .caption {
+    width: auto !important; /* Ignore inline width and adjust to content width */
+  }
+
+  .image-container.single-image img {
+    width: 100% !important; /* Ensure the image scales to the container */
   }
 
   #footer p {
